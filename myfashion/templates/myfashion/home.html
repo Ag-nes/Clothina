@@ -1,0 +1,152 @@
+{% include 'myfashion/base.html' %}
+{% load static%}
+{% load ratings %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="conatiner-fluid"
+    style="background-image: url('/static/00_story.jpg'); background-repeat: no-repeat; background-size: cover;background-attachment: fixed;">
+    <section id="landingpage">
+        <div class="container-fluid" style=" height: 60vh;">
+            <h2 class="text-center animate__animated animate__bounce" style="padding-top: 15%;font-family: 'Fugaz One', cursive;
+    font-family: 'Luckiest Guy', cursive;font-size: 60px;color:sienna;
+    ">Welcome to Our World,</h2>
+            <p class="text-center  animate__animated animate__bounce " style="font-family: 'Open Sans', cursive;
+    font-family: 'Luckiest Guy', cursive;font-size: 30px;color:sienna;"></p>
+        </div>
+    </section>
+
+    
+
+    <section id="fashion">
+        <h2 class="text-center" style="padding-top: 70px;font-family: 'Fugaz One', cursive;
+    font-family: 'Luckiest Guy', cursive;font-size: 40px;color:white;
+    "></h2>
+        <div class="row container-fluid content">
+            {% for image in images %}
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 thumbnails">
+                <div class="card-body">
+                    <img src="{{image.image.url}}" class="img-fluid img-responsive" alt="image"
+                        style="width: 75%; height: 450px;">
+                    <br>
+                    <a href="#" class="btn btn-primary btn-sm mt-3" data-toggle="modal" data-target="#{{image.id}}">View
+                        More</a>
+                </div>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="{{image.id}}" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <h3 class="modal-title text-center" id="title">{{image.title}}</h3>
+                            <a href="#"><img src="{{image.image.url}}" class="img-responsive" alt="image"
+                                    style="width: 80%; height: 200px;"></a>
+
+                            <p class="text-center">{{image.caption}}</p>
+                            <p>Location: {{image.location}}</p>
+                            <p>Description : {{image.description}}</p>
+                            <p>Price : {{image.price}}</p>
+                            <p>Posted on :{{image.pub_date}}</p>
+                                   
+                                   
+                        </div>
+                        <div class="modal-title rate" style="display: flex;">
+                            {% ratings image %}
+                        </div>
+
+                        <div class="modal-footer">
+                            <input type="text" value="{{image.image.url}}" id="copy" style="width:250px"
+                                class="form-control">
+
+                            <button class="btn btn-success btn-sm" onclick="copyLink('{{image.id}}.url')">order</button>
+                            <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            {% endfor %}
+        </div>
+        
+        {% endblock %}
+    </section>
+    
+
+<div id="contact">
+   <!-- <a href="contacts"></a> -->
+    <h1 style="text-align: center;"><b style="color: blue;"></b></h1>
+
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-md-4">
+                <h3>Contact us</h3>
+                <p> Email: faithagnes2@gmail.com</p>
+                <p> Phone number : +254790279917</p>
+            </div>
+            <div class="col-md-4">
+                <h3>Locate us</h3>
+                <P>Nairobi, Kenya</P>
+                <p> Copyright @2021 Geenahs_world</p>
+                <p><b style="color: black;">Design by Agnes Okutoyi @ © 2021</b></p>
+    
+            </div>
+            <div class="col-md-4">
+
+                <h3>Connect with us</h3>
+<style>
+    #about{
+    font-size: 10px;
+}
+#contact .jumbotron{
+    background-color:sienna;
+    color: white;
+}
+#contact{
+    text-align: center;
+}
+#icon{
+    display: flex;
+    justify-content: center;
+}
+#icon img{
+    margin-right: 20px;
+}
+
+.rate{
+    display: flex;
+    list-style-type: none;
+    list-style: none;
+}
+</style>
+
+                <div id="icon">
+                    <div class="icon">
+                        <a href=""><img src="/static/about img/facebook.png" alt=""></a>
+                    </div>
+                    <br>
+                    <div class="icon">
+                        <a href=""><img src="/static/about img/g_plus.png" alt=""></a>
+                    </div>
+                    <br>
+                    <div class="icon">
+                        <a href=""><img src="/static/about img/twitter.png" alt=""></a>
+                    </div>
+                    <div class="icon">
+                        <a href=""><img src="/static/about img/you_tube.png" alt=""></a>
+                        
+                    </div>
+                </div>
+            </div>
+            
+
+        </div>
+    </div>
+    
+</div>
+
+</div>
+<script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
